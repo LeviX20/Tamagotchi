@@ -7,15 +7,15 @@ import java.sql.Date;
 import javax.imageio.ImageIO;
 
 public class Tamagotchi {
-
+	
 	//GET ANIMATION IMAGES
 	public static Image idle0;
-	
-	try {
-		idle0 = ImageIO.read(Main.class.getResourceAsStream("/tamagotchi/resources/idleAnim0"));	
-	} catch (IOException e1) {
-		// TODO Auto-generated catch block
-		e1.printStackTrace();
+	{
+		try {
+			idle0 = ImageIO.read(Main.class.getResourceAsStream("/tamagotchi/resources/idleAnim0"));	
+		}catch (IOException e1){
+			// TODO Auto-generated catch block
+			e1.printStackTrace();}
 	}
 	
 	static String name = "";
@@ -46,6 +46,8 @@ public class Tamagotchi {
 	static boolean IDLE;
 	
 	//make animations
+	
+	
 	Animation eatingANIMATION = new Animation(idle0, idle0, idle0);
 	Animation toiletANIMATION = new Animation(idle0, idle0, idle0);
 	Animation attentionANIMATION = new Animation(idle0, idle0, idle0);
