@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.Date;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class Tamagotchi {
 	
@@ -22,7 +23,7 @@ public class Tamagotchi {
 	Date birthday = new Date(0);
 	
 	static double age = 0; //HOW OLD IS IT
-	static double hunger = 0;  //HOW HUNGRY IS IT
+	static double hunger = 100;  //HOW HUNGRY IS IT
 	static double energy = 100;  //HOW MUCH ENERGY DOES IT HAVE
 	static double waste = 0;  //IS THERE WASTE 0/1
 	static boolean alive = true; //IF ALIVE IS TRUE, ITS ALIVE;
@@ -31,7 +32,7 @@ public class Tamagotchi {
 	static final int showWaste = 1;
 	
 	static final int deadAge = 100000;
-	static final int deadHunger = 100;
+	static final int deadHunger = 0;
 	static final int deadEnergy = 0;
 	
 	static final int evolutionAge0 = 0;//egg
@@ -68,6 +69,10 @@ public class Tamagotchi {
 	}
 	
 	//SETTERS
+	
+	public static void setName(String s) {
+		name = s;
+	}
 	public static void setAge(double h) {
 		age = h;
 	}
@@ -83,6 +88,9 @@ public class Tamagotchi {
 	
 	
 	//GETTERS
+	public static String getName() {
+		return name;
+	}
 	public static double getAge() {
 		return age;
 	}
@@ -97,8 +105,15 @@ public class Tamagotchi {
 	}
 	
 	
-	
+	//other methods
 	public static void evolve(int e) {
 		//anim.setAnimation(e)
 	}
+	public static void dead() {
+		JOptionPane.showMessageDialog(null, "Your Tamagotchi died!");
+		System.out.println("The Tamagotchi Died :(");
+		System.exit(0);
+	}
+}
+
 }
