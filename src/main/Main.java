@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Main extends JPanel{
@@ -14,7 +15,7 @@ public class Main extends JPanel{
 	static JFrame frame;
 	public static void main(String args[]) {
 		try {
-			image = ImageIO.read(Main.class.getResourceAsStream("/tamagotchi/tamagatchiBackground.png"));	
+			image = ImageIO.read(Main.class.getResourceAsStream("tamagatchiBackground.png"));	
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -30,6 +31,12 @@ public class Main extends JPanel{
 		Main main = new Main();
 		frame.add(main);
 		
+		//start program initialization commands
+		Tamagotchi.setName(JOptionPane.showInputDialog("What is your Tamagotchi's name?"));
+		System.out.println("Name: "+Tamagotchi.getName());
+		
+		
+		//start tick loop
 		if(Tamagotchi.alive) {
 			try {
 		        while (true) {
@@ -42,7 +49,7 @@ public class Main extends JPanel{
 		        	System.out.println("age:"+Tamagotchi.getAge());
 		        	
 		        	//HUNGER
-		        	Tamagotchi.setHunger(Tamagotchi.hunger+=0.03125); //dies in 2 days
+		        	Tamagotchi.setHunger(Tamagotchi.hunger-=0.03125); //dies in 2 days
 		        	System.out.println("hunger:"+Tamagotchi.getHunger());
 		        	
 		        	//ENERGY
@@ -53,11 +60,30 @@ public class Main extends JPanel{
 		        	Tamagotchi.setWaste(Tamagotchi.waste+=0.20);
 		        	System.out.println("waste:"+Tamagotchi.getWaste());
 		        	
-		        	//EVOLVING???
+		        	//CHECK STATS
+		        	
+		        	//IF EVOLVING
 		        	if((Tamagotchi.getAge()% 1.0) == 0) { //if a whole number
 		        		int evolution = (int) Tamagotchi.getAge();
 		        		Tamagotchi.evolve(evolution);
 		        	}
+		        	
+		        	//IF DEADAGE
+		        	if(Tamagotchi.getAge() >= Tamagotchi.deadAge) {
+		        		Tamagotchi.alive = false;
+		        		Tamagotchi.dead();
+		        	}
+		        	//IFDEADHUNGER
+		        	if(Tamagotchi.getHunger() <= Tamagotchi.deadHunger);{
+		        		Tamagotchi.alive = false;
+		        		Tamagotchi.dead();
+		        	}
+		        	//IF DEADENERGY
+		        	if(Tamagotchi.getEnergy() <= Tamagotchi.deadEnergy) {
+		        		Tamagotchi.alive = false;
+	        			Tamagotchi.dead();
+		        	}
+		        	
 		        	
 		        	Thread.sleep(60*1000); //every minute
 		        }
